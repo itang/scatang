@@ -1,15 +1,15 @@
 # Scatang  
 An utility library for [Scala][scala]. (*Experimental*)  
 ## Usage:  
-* Int#times  
-
+#### Int#times  
+   
     scala> import scatang._  
     scala> 2.times(print("Hello"))  
     HelloHello  
     scala> 10 times { i => print(i + 1) }  
     234567891011  
 
-* Any#tap  
+#### Any#tap  
 
     scala> 1.tap(println).tap(it => 100)   
     1  
@@ -21,7 +21,7 @@ An utility library for [Scala][scala]. (*Experimental*)
     scala> "hello".tap(_ + ",world") tap print  
     hellores4: java.lang.String = hello  
 
-* Any#`with`  
+#### Any#`with`  
 
     scala> "attitue".tap(println) `with` { it => it map { _ - 'a' + 1}
     sum }  
