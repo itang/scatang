@@ -1,6 +1,5 @@
 # Scatang  
 An utility library for [Scala][scala]. (*Experimental*)  
-- - -  
 ## Usage:  
 * Int#times  
 
