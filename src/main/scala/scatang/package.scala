@@ -1,10 +1,11 @@
 package object scatang {
 
-  implicit def ints(source: Int) = new {
+  implicit def numeric2Powerable[A : Numeric](i: A) = new {
 
     def times(proc: Int => Unit) {
       var index = 1
-      while (index <= source) {
+      val size = implicitly[Numeric[A]].toInt(i)
+      while (index <= size) {
         proc(index)
         index += 1
       }
@@ -15,7 +16,7 @@ package object scatang {
     }
   }
 
-  implicit def anys[T <: Any](source: T) = new {
+  implicit def any2Powerable[T <: Any](source: T) = new {
 
     def tap(proc: T => Any): T = {
       try {

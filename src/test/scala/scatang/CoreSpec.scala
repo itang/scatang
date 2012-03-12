@@ -1,7 +1,7 @@
 package scatang
 
-import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Spec
 
 //导入scatang core implicits
 //import scatang._
@@ -15,6 +15,13 @@ class CoreSpec extends Spec with ShouldMatchers {
           10.times {
             count += 1
           }
+          count should be(10)
+          
+          count = 0
+          10.0 times {
+            count += 1
+          }
+          
           count should be(10)
         }
         it("带当前次数方式") {
