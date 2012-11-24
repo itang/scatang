@@ -29,6 +29,6 @@ package object scatang {
 
     def deliver[R](proc: T => R): R = proc(source)
 
-    def `with`[R](proc: T => R) = deliver(proc)
+    def `with`[R](proc: T => R): R = deliver(proc)
   }
 }
