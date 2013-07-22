@@ -2,8 +2,7 @@ import org.brianmckenna.wartremover.WartRemover
 
 package object scatang extends WartRemover {
 
-  implicit def numeric2Powerable[A : Numeric](i: A) = new {
-
+  implicit class NumericWrapper[A: Numeric](i: A) {
     def times(proc: Int => Unit) {
       var index = 1
       val size = implicitly[Numeric[A]].toInt(i)
@@ -18,13 +17,12 @@ package object scatang extends WartRemover {
     }
   }
 
-  implicit def any2Powerable[T <: Any](source: T) = new {
-
+  implicit class AnyWrapper[T <: Any](source: T) {
     def tap(proc: T => Any): T = {
       try {
         proc(source)
       } catch {
-        case e : Throwable => Console.err.print(e.getMessage());
+        case e: Throwable => Console.err.print(e.getMessage());
       }
       source
     }

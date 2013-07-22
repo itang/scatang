@@ -1,6 +1,7 @@
 .ensime
 .project
 .classpath
+.settings
 
 target/
 lib_managed/
