@@ -1,4 +1,6 @@
-package object scatang {
+import org.brianmckenna.wartremover.WartRemover
+
+package object scatang extends WartRemover {
 
   implicit def numeric2Powerable[A : Numeric](i: A) = new {
 
@@ -22,7 +24,7 @@ package object scatang {
       try {
         proc(source)
       } catch {
-        case e => Console.err.print(e.getMessage());
+        case e : Throwable => Console.err.print(e.getMessage());
       }
       source
     }

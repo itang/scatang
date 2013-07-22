@@ -1,12 +1,14 @@
 package scatang
 
+import scala.language.reflectiveCalls
+
 import org.scalatest.matchers.ShouldMatchers
-import org.scalatest.Spec
+import org.scalatest.FunSpec
 
 //导入scatang core implicits
 //import scatang._
 
-class CoreSpec extends Spec with ShouldMatchers {
+class CoreSpec extends FunSpec with ShouldMatchers {
   describe("Core 库") {
     describe("Int 增强") {
       describe("times 方法") {
@@ -16,12 +18,12 @@ class CoreSpec extends Spec with ShouldMatchers {
             count += 1
           }
           count should be(10)
-          
+
           count = 0
           10.0 times {
             count += 1
           }
-          
+
           count should be(10)
         }
         it("带当前次数方式") {
