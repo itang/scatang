@@ -12,7 +12,7 @@ javacOptions ++= Seq("-encoding", "UTF-8")
 
 javacOptions ++= Seq("-source", "1.6", "-target", "1.6")
 
-scalacOptions ++= Seq("-deprecation", "-feature", "-Yno-adapted-args", "-Ywarn-all", "-Xfatal-warnings")
+scalacOptions ++= Seq("-encoding", "UTF-8", "-Xlint", "-deprecation", "-feature", "-Yno-adapted-args", "-Ywarn-all", "-Xfatal-warnings")
 
 libraryDependencies ++= Seq(
   "org.brianmckenna" % "wartremover_2.10" % "0.3",
