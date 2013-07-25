@@ -45,5 +45,15 @@ class CoreSpec extends FunSpec with ShouldMatchers {
       "hello".deliver(_ + ",world") should be("hello,world")
       1.`with`(_ + 1).`with`(_ + 1) should be(3)
     }
+
+    describe("time"){
+      import java.io.{ByteArrayOutputStream, PrintStream}
+      val baos = new ByteArrayOutputStream
+      Console.withOut(new PrintStream(baos)) {
+        val (elapsed, ret) = time(Range(1, 1000).sum)
+        baos.toString should startWith ("Elapsed time: " + elapsed + " msecs")
+        ret should be (Range(1,1000).sum)
+      }
+    }
   }
 }
