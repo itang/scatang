@@ -36,24 +36,38 @@ class CoreSpec extends FunSpec with ShouldMatchers {
       }
     }
 
-    describe("tap"){
-      1.tap(println).tap(it => 100) should be (1)
+    describe("tap") {
+      1.tap(println).tap(it => 100) should be(1)
       "hello".tap(_ + ",world") should be("hello")
     }
 
-    describe("deliver"){
+    describe("deliver") {
       "hello".deliver(_ + ",world") should be("hello,world")
       1.`with`(_ + 1).`with`(_ + 1) should be(3)
     }
 
-    describe("time"){
-      import java.io.{ByteArrayOutputStream, PrintStream}
+    describe("time") {
+      import java.io.{ ByteArrayOutputStream, PrintStream }
       val baos = new ByteArrayOutputStream
       Console.withOut(new PrintStream(baos)) {
         val (elapsed, ret) = time(Range(1, 1000).sum)
-        baos.toString should startWith ("Elapsed time: " + elapsed + " msecs")
-        ret should be (Range(1,1000).sum)
+        baos.toString should startWith("Elapsed time: " + elapsed + " msecs")
+        ret should be(Range(1, 1000).sum)
       }
+    }
+
+    describe("delay delay_? realized_? force") {
+      val d = delay({ println("delay"); System.nanoTime() })
+      delay_?(d) should be(true)
+      realized_?(d) should be(false)
+
+      val v = d()
+      realized_?(d) should be(true)
+
+      v should be(d())
+      v should be(d())
+
+      force[Long](d) should be(v)
     }
   }
 }
