@@ -1,9 +1,13 @@
-# Scatang  
-An utility library for [Scala][scala]. (*Experimental*)  
+# Scatang
+
+An utility library for [Scala][scala]. (*Experimental*)
+
 ## Usage:  
+
+	scala> import scatang._
+   
 #### Int#times  
    
-    scala> import scatang._  
     scala> 2.times(print("Hello"))  
     HelloHello  
     scala> 10 times { i => print(i + 1) }  
@@ -23,11 +27,15 @@ An utility library for [Scala][scala]. (*Experimental*)
 
 #### Any#`with`  
 
-    scala> "attitue".tap(println) `with` { it => it map { _ - 'a' + 1}
-    sum }  
+    scala> "attitue".tap(println) `with` { it => it map { _ - 'a' + 1} sum }  
     attitue  
     res5: Int = 96  
 
-    
+#### time
+	
+	scala> time(Range(1,100000).sum)
+	Elapsed time: 0.317745 msecs
+	res6: (Double, Int) = (0.317745,704982704)
+
 [scala]: http://www.scala-lang.org
 
