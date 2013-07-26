@@ -1,5 +1,8 @@
 //import org.brianmckenna.wartremover.WartRemover
 
+import scatang.core.Delay
+import scatang.core.IPending
+
 package object scatang /* extends WartRemover */ {
 
   implicit class NumericWrapper[A: Numeric](i: A) {
@@ -36,6 +39,7 @@ package object scatang /* extends WartRemover */ {
     val start = System.nanoTime
     var ret = fn
     val elapsed = (System.nanoTime - start) / 1000000.0
+
     println(s"""Elapsed time: $elapsed msecs""")
     (elapsed, ret)
   }
@@ -47,7 +51,8 @@ package object scatang /* extends WartRemover */ {
   def force[T](x: AnyRef): T = {
     if (delay_?(x))
       x.asInstanceOf[Delay[T]].deref()
-    else x.asInstanceOf[T]
+    else 
+      x.asInstanceOf[T]
   }
 
   def realized_?(x: IPending) = x.isRealized

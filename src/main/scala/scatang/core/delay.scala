@@ -1,4 +1,4 @@
-package scatang
+package scatang.core
 
 trait IDeref[T] {
   def deref(): T

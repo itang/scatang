@@ -1,4 +1,6 @@
-package scatang
+package scatang_spec
+
+import scatang._
 
 import scala.language.reflectiveCalls
 
