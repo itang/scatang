@@ -71,5 +71,14 @@ class CoreSpec extends FunSpec with ShouldMatchers {
 
       force[Long](d) should be(v)
     }
+
+    describe("inc dec") {
+      val i = 10
+      inc(i) should be(11)
+
+      dec(i) should be(9)
+
+      inc(10.0) should equal (11.0)
+    }
   }
 }

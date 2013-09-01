@@ -51,9 +51,14 @@ package object scatang /* extends WartRemover */ {
   def force[T](x: AnyRef): T = {
     if (delay_?(x))
       x.asInstanceOf[Delay[T]].deref()
-    else 
+    else
       x.asInstanceOf[T]
   }
 
   def realized_?(x: IPending) = x.isRealized
+
+  import  Numeric.Implicits._
+  def inc[T: Numeric](i: T) = i + implicitly[Numeric[T]].one
+
+  def dec[T: Numeric](i: T) = i - implicitly[Numeric[T]].one
 }
