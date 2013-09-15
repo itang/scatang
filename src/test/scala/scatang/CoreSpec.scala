@@ -78,7 +78,19 @@ class CoreSpec extends FunSpec with ShouldMatchers {
 
       dec(i) should be(9)
 
-      inc(10.0) should equal (11.0)
+      inc(10.0) should equal(11.0)
+    }
+
+    describe("odd_? even_?") {
+      odd_?(1) should be(true)
+      odd_?(2) should be(false)
+      odd_?(-1) should be(true)
+      odd_?(-2) should be(false)
+
+      even_?(1) should be(false)
+      even_?(2) should be(true)
+      even_?(-1) should be(false)
+      even_?(-2) should be(true)
     }
   }
 }

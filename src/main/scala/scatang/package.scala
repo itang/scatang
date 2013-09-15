@@ -61,4 +61,8 @@ package object scatang /* extends WartRemover */ {
   def inc[T: Numeric](i: T) = i + implicitly[Numeric[T]].one
 
   def dec[T: Numeric](i: T) = i - implicitly[Numeric[T]].one
+  
+  def odd_?(i: Int) = (math.abs(i % 2) == 1)
+  
+  def even_?(i: Int) = (math.abs(i % 2) == 0)
 }
