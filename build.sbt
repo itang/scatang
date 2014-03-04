@@ -2,7 +2,7 @@ name := "scatang"
 
 version := "0.1.0-SNAPSHOT"
 
-scalaVersion := "2.10.2"
+scalaVersion := "2.10.3"
 
 organization := "me.itang"
 
@@ -16,7 +16,7 @@ scalacOptions ++= Seq("-encoding", "UTF-8","-encoding", "UTF-8", "-Xlint", "-fea
 
 libraryDependencies ++= Seq(
   //"org.brianmckenna" % "wartremover_2.10" % "0.3",
-  "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
+  "org.scalatest" % "scalatest_2.10" % "2.1.0" % "test"
 )
 
 //org.scalastyle.sbt.ScalastylePlugin.Settings

@@ -4,13 +4,13 @@ import scatang._
 
 import scala.language.reflectiveCalls
 
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 import org.scalatest.FunSpec
 
 //导入scatang core implicits
 //import scatang._
 
-class CoreSpec extends FunSpec with ShouldMatchers {
+class CoreSpec extends FunSpec with Matchers {
   describe("Core 库") {
     describe("Int 增强") {
       describe("times 方法") {
