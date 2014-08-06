@@ -18,4 +18,22 @@ package object string {
       sb append sample(random.nextInt(sample.length))
     }.toString
   }
+
+  implicit class StringWrapper( /*@Nullable*/ s: String) {
+    def padRight(length: Int, p: String = " "): String = pad(length, p, true)
+
+    def padLeft(length: Int, p: String = " "): String = pad(length, p, false)
+
+    def pad(length: Int, p: String = " ", right_? : Boolean = true): String = {
+      val to = if (s == null) "" else s
+      val len = if (s == null) 0 else s.length()
+      len match {
+        case _ if len >= length => to
+        case _ => {
+          val pl = length - len
+          if (right_?) to + p * pl else p * pl + to
+        }
+      }
+    }
+  }
 }
