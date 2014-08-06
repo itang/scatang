@@ -20,7 +20,6 @@ class CoreSpec extends FunSpec with Matchers {
       val s1 = ""
       s1.pad(10, "*", true) should be("*" * 10)
       s1.pad(10, "*", false) should be("*" * 10)
-
     }
 
     describe("padRight") {
