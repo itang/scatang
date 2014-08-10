@@ -2,6 +2,14 @@
 
 An utility library for [Scala][scala]. (*Experimental*)
 
+## Install
+
+    resolvers += "itang's repos" at "http://itang.github.io/maven-repo"
+    
+    libraryDependencies ++= Seq(
+        "me.itang" % "scatang_2.11" % "0.1"
+    )
+
 ## Usage:
 
 	scala> import scatang._
