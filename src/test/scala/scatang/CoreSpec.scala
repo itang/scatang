@@ -48,6 +48,11 @@ class CoreSpec extends FunSpec with Matchers {
       1.`with`(_ + 1).`with`(_ + 1) should be(3)
     }
 
+    describe("|>") {
+      "hello" |> (_ + ",world") should be("hello,world")
+      1 |> (_ + 1) |> (_ + 1) should be(3)
+    }
+
     describe("time") {
       import java.io.{ ByteArrayOutputStream, PrintStream }
       val baos = new ByteArrayOutputStream

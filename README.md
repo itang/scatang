@@ -25,9 +25,9 @@ An utility library for [Scala][scala]. (*Experimental*)
     scala> "hello".tap(_ + ",world") tap print
     hellores4: java.lang.String = hello
 
-#### Any#`with`
+#### Any#|>
 
-    scala> "attitue".tap(println) `with` { it => it map { _ - 'a' + 1} sum }
+    scala> "attitue".tap(println) |> { it => it map { _ - 'a' + 1} sum }
     attitue
     res5: Int = 96
 

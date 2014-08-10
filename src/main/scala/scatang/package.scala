@@ -33,6 +33,8 @@ package object scatang /* extends WartRemover */ {
     def deliver[R](proc: T => R): R = proc(source)
 
     def `with`[R](proc: T => R): R = deliver(proc)
+    
+    def |>[R](proc: T=> R): R = deliver(proc)
   }
 
   def time[T](fn: => T): (Double, T) = {
