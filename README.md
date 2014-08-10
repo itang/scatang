@@ -12,6 +12,8 @@ An utility library for [Scala][scala]. (*Experimental*)
 
 ## Usage:
 
+### scatang
+
 	scala> import scatang._
 
 #### Int#times
@@ -68,5 +70,27 @@ An utility library for [Scala][scala]. (*Experimental*)
 
     scala> force(d) == d()
     res5: Boolean = true
+
+### scatang.string
+
+    import scatang.string._
+
+#### String#pad, String#padRight, String#padLeft, String#center
+
+    scala> "abc".pad(10, "*", true)
+    res0: String = abc*******
+
+    scala> "abc".pad(10, "*", false)
+    res1: String = *******abc
+
+    scala> "abc".padRight(10, "*")
+    res2: String = abc*******
+
+    scala> "abc".padLeft(10, "*")
+    res3: String = *******abc
+
+    scala> "abc".center(10, "*")
+    res4: String = ***abc****
+
 
 [scala]: http://www.scala-lang.org
