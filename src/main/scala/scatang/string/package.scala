@@ -25,8 +25,8 @@ package object string {
     def padLeft(length: Int, p: String = " "): String = pad(length, p, false)
 
     def pad(length: Int, p: String = " ", right_? : Boolean = true): String = {
-      val to = if (s == null) "" else s
-      val len = if (s == null) 0 else s.length()
+      val to = s.nullToEmpty
+      val len = to.length()
       len match {
         case _ if len >= length => to
         case _ => {
@@ -35,5 +35,29 @@ package object string {
         }
       }
     }
+
+    def center(numberOfChars: Int, p: String = " "): String = {
+      val to = s.nullToEmpty
+      if (to.isEmpty()) {
+        return p * numberOfChars
+      }
+
+      val len = to.length()
+      if (numberOfChars <= len) {
+        return to
+      }
+
+      val (lplen, rplen) = {
+        val plen = numberOfChars - len
+        val hplen = plen / 2
+        if (plen % 2 == 0) (hplen, hplen) else (hplen, hplen + 1)
+      }
+      return p * lplen + to + p * rplen
+    }
+
+    def nullToEmpty(): String = if (s == null) "" else s
+
+    private def lengthOrNullZero(): Int = if (s == null) 0 else s.length()
+
   }
 }
