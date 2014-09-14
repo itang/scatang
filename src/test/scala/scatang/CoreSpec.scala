@@ -30,7 +30,7 @@ class CoreSpec extends FunSpec with Matchers {
         }
         it("带当前次数方式") {
           var index = 1
-          10.times { it =>
+          10.times { it ⇒
             it should be(index)
             index += 1
           }
@@ -39,7 +39,7 @@ class CoreSpec extends FunSpec with Matchers {
     }
 
     describe("tap") {
-      1.tap(println).tap(it => 100) should be(1)
+      1.tap(println).tap(it ⇒ 100) should be(1)
       "hello".tap(_ + ",world") should be("hello")
     }
 

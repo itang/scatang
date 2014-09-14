@@ -6,7 +6,7 @@ import scatang.core.IPending
 package object scatang /* extends WartRemover */ {
 
   implicit class NumericWrapper[A: Numeric](i: A) {
-    def times(proc: Int => Unit) {
+    def times(proc: Int ⇒ Unit) {
       var index = 1
       val size = implicitly[Numeric[A]].toInt(i)
       while (index <= size) {
@@ -15,29 +15,29 @@ package object scatang /* extends WartRemover */ {
       }
     }
 
-    def times(block: => Unit) {
-      times(index => block)
+    def times(block: ⇒ Unit) {
+      times(index ⇒ block)
     }
   }
 
   implicit class AnyWrapper[T <: Any](source: T) {
-    def tap(proc: T => Any): T = {
+    def tap(proc: T ⇒ Any): T = {
       try {
         proc(source)
       } catch {
-        case e: Throwable => Console.err.print(e.getMessage());
+        case e: Throwable ⇒ Console.err.print(e.getMessage());
       }
       source
     }
 
-    def deliver[R](proc: T => R): R = proc(source)
+    def deliver[R](proc: T ⇒ R): R = proc(source)
 
-    def `with`[R](proc: T => R): R = deliver(proc)
-    
-    def |>[R](proc: T=> R): R = deliver(proc)
+    def `with`[R](proc: T ⇒ R): R = deliver(proc)
+
+    def |>[R](proc: T ⇒ R): R = deliver(proc)
   }
 
-  def time[T](fn: => T): (Double, T) = {
+  def time[T](fn: ⇒ T): (Double, T) = {
     val start = System.nanoTime
     var ret = fn
     val elapsed = (System.nanoTime - start) / 1000000.0
@@ -46,7 +46,7 @@ package object scatang /* extends WartRemover */ {
     (elapsed, ret)
   }
 
-  def delay[T](fn: => T): Delay[T] = Delay(() => fn)
+  def delay[T](fn: ⇒ T): Delay[T] = Delay(() ⇒ fn)
 
   def delay_?(x: AnyRef) = x.isInstanceOf[Delay[_]]
 
@@ -59,12 +59,12 @@ package object scatang /* extends WartRemover */ {
 
   def realized_?(x: IPending) = x.isRealized
 
-  import  Numeric.Implicits._
+  import Numeric.Implicits._
   def inc[T: Numeric](i: T) = i + implicitly[Numeric[T]].one
 
   def dec[T: Numeric](i: T) = i - implicitly[Numeric[T]].one
-  
+
   def odd_?(i: Int) = (math.abs(i % 2) == 1)
-  
+
   def even_?(i: Int) = (math.abs(i % 2) == 0)
 }
