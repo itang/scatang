@@ -59,11 +59,41 @@ class CoreSpec extends FunSpec with Matchers {
         Case("a", 4, " a  "),
         Case("a", 10, "    a     "))
 
-      for (Case(input, len, expected) <- cases) {
+      for (Case(input, len, expected) ← cases) {
         input.center(len) should be(expected)
       }
 
       "a".center(10, "*") should be("****a*****")
     }
+
+    describe("toURL") {
+      val s = "http://www.deftype.com"
+      val url = s.toURL()
+      url.getProtocol should be("http")
+
+      intercept[java.net.MalformedURLException] {
+        "somebad.url.com".toURL()
+      }
+
+      import scala.util._
+      Try {
+        s.toURL
+      }.isSuccess should be(true)
+
+      Try("somebad.url.com".toURL()) match {
+        case Success(url) ⇒ fail()
+        case Failure(e) ⇒ println("expected error")
+      }
+    }
+
+    describe("parseURL") {
+      "http://www.deftype.com".parseURL().isSuccess should be(true)
+      "somepath/xx".parseURL().isFailure should be(true)
+    }
+
+    describe("toURI") {
+      "somepath/xx".toURI().getPath() should be("somepath/xx")
+    }
+
   }
 }

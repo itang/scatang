@@ -1,6 +1,6 @@
 name := "scatang"
 
-version := "0.1"
+version := "0.2-SNAPSHOT"
 
 scalaVersion := "2.11.2"
 
@@ -15,7 +15,6 @@ javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
 scalacOptions ++= Seq("-encoding", "UTF-8","-encoding", "UTF-8", "-Xlint", "-feature", "-unchecked", "-deprecation", "-target:jvm-1.7", "-language:postfixOps", "-language:implicitConversions", "-language:reflectiveCalls", "-Yno-adapted-args", "-Xfatal-warnings")
 
 libraryDependencies ++= Seq(
-  //"org.brianmckenna" % "wartremover_2.10" % "0.3",
   "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test"
 )
 

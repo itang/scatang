@@ -1,6 +1,9 @@
 package scatang
 
 import java.util.Random
+import java.net.{ URL, URI }
+
+import scala.util.Try
 
 package object string {
   private lazy val random = new Random
@@ -14,7 +17,7 @@ package object string {
     assert(length > 0)
     assert(sample.length > 0, "sample data can't be empty!")
 
-    (0 until length).foldLeft(new StringBuilder) { (sb, _) =>
+    (0 until length).foldLeft(new StringBuilder) { (sb, _) ⇒
       sb append sample(random.nextInt(sample.length))
     }.toString
   }
@@ -28,8 +31,8 @@ package object string {
       val to = s.nullToEmpty
       val len = to.length()
       len match {
-        case _ if len >= length => to
-        case _ => {
+        case _ if len >= length ⇒ to
+        case _ ⇒ {
           val pl = length - len
           if (right_?) to + p * pl else p * pl + to
         }
@@ -56,6 +59,12 @@ package object string {
     }
 
     def nullToEmpty(): String = if (s == null) "" else s
+
+    def toURL(): URL = new URL(s)
+
+    def parseURL(): Try[URL] = Try(toURL())
+
+    def toURI(): URI = new URI(s)
 
     private def lengthOrNullZero(): Int = if (s == null) 0 else s.length()
 
