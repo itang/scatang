@@ -15,7 +15,7 @@ javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
 scalacOptions ++= Seq("-encoding", "UTF-8","-encoding", "UTF-8", "-Xlint", "-feature", "-unchecked", "-deprecation", "-target:jvm-1.7", "-language:postfixOps", "-language:implicitConversions", "-language:reflectiveCalls", "-Yno-adapted-args", "-Xfatal-warnings")
 
 libraryDependencies ++= Seq(
-  "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test"
+  "org.scalatest" % "scalatest_2.11" % "2.2.2" % "test"
 )
 
 //org.scalastyle.sbt.ScalastylePlugin.Settings
