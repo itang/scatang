@@ -2,7 +2,7 @@ name := "scatang"
 
 version := "0.2-SNAPSHOT"
 
-scalaVersion := "2.11.2"
+scalaVersion := "2.11.5"
 
 organization := "me.itang"
 
@@ -24,3 +24,12 @@ publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.
 
 initialCommands in console := """import scatang._;import scatang.string._"""
 
+publishTo := {
+  val nexus = "http://120.24.68.174:8081/nexus/content/repositories"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "/snapshots")
+  else
+    Some("releases"  at nexus + "/releases")
+}
+
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
