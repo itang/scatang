@@ -32,8 +32,6 @@ package object scatang /* extends WartRemover */ {
 
     def deliver[R](proc: T ⇒ R): R = proc(source)
 
-    def `with`[R](proc: T ⇒ R): R = deliver(proc)
-
     def |>[R](proc: T ⇒ R): R = deliver(proc)
   }
 
@@ -48,23 +46,23 @@ package object scatang /* extends WartRemover */ {
 
   def delay[T](fn: ⇒ T): Delay[T] = Delay(() ⇒ fn)
 
-  def delay_?(x: AnyRef) = x.isInstanceOf[Delay[_]]
+  def delay_?(x: AnyRef): Boolean = x.isInstanceOf[Delay[_]]
 
-  def force[T](x: AnyRef): T = {
-    if (delay_?(x))
+  def force[T](x: AnyRef): T =
+    if (delay_?(x)) {
       x.asInstanceOf[Delay[T]].deref()
-    else
+    } else {
       x.asInstanceOf[T]
-  }
+    }
 
-  def realized_?(x: IPending) = x.isRealized
+  def realized_?(x: IPending): Boolean = x.isRealized
 
   import Numeric.Implicits._
-  def inc[T: Numeric](i: T) = i + implicitly[Numeric[T]].one
+  def inc[T: Numeric](i: T): T = i + implicitly[Numeric[T]].one
 
-  def dec[T: Numeric](i: T) = i - implicitly[Numeric[T]].one
+  def dec[T: Numeric](i: T): T = i - implicitly[Numeric[T]].one
 
-  def odd_?(i: Int) = (math.abs(i % 2) == 1)
+  def odd_?(i: Int): Boolean = (math.abs(i % 2) == 1)
 
-  def even_?(i: Int) = (math.abs(i % 2) == 0)
+  def even_?(i: Int): Boolean = (math.abs(i % 2) == 0)
 }

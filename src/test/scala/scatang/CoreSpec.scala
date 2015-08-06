@@ -45,7 +45,7 @@ class CoreSpec extends FunSpec with Matchers {
 
     describe("deliver") {
       "hello".deliver(_ + ",world") should be("hello,world")
-      1.`with`(_ + 1).`with`(_ + 1) should be(3)
+      1.deliver(_ + 1).deliver(_ + 1) should be(3)
     }
 
     describe("|>") {

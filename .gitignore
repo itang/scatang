@@ -25,3 +25,7 @@ out/
 reports/
 
 sbtang.sublime-project
+/bin/
+
+.cache-main
+.cache-tests

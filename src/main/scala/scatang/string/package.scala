@@ -7,13 +7,14 @@ import scala.util.Try
 
 package object string {
   private lazy val random = new Random
+  private val DEFAULT_LEN = 8
 
   type RandomSample = Array[Char]
   lazy val RandomSampleNumbers: RandomSample = (0 to 9).mkString.toArray
   lazy val RandomSampleChars: RandomSample = ('_' :: ('a' to 'z').toList ::: ('A' to 'Z').toList).toArray
   lazy val RandomSampleMixed: RandomSample = RandomSampleNumbers ++ RandomSampleChars
 
-  def randomString(length: Int = 8, sample: RandomSample = RandomSampleMixed): String = {
+  def randomString(length: Int = DEFAULT_LEN, sample: RandomSample = RandomSampleMixed): String = {
     assert(length > 0)
     assert(sample.length > 0, "sample data can't be empty!")
 
@@ -42,20 +43,20 @@ package object string {
     def center(numberOfChars: Int, p: String = " "): String = {
       val to = s.nullToEmpty
       if (to.isEmpty()) {
-        return p * numberOfChars
+        p * numberOfChars
+      } else {
+        val len = to.length()
+        if (numberOfChars <= len) {
+          to
+        } else {
+          val (lplen, rplen) = {
+            val plen = numberOfChars - len
+            val hplen = plen / 2
+            if (plen % 2 == 0) (hplen, hplen) else (hplen, hplen + 1)
+          }
+          p * lplen + to + p * rplen
+        }
       }
-
-      val len = to.length()
-      if (numberOfChars <= len) {
-        return to
-      }
-
-      val (lplen, rplen) = {
-        val plen = numberOfChars - len
-        val hplen = plen / 2
-        if (plen % 2 == 0) (hplen, hplen) else (hplen, hplen + 1)
-      }
-      return p * lplen + to + p * rplen
     }
 
     def nullToEmpty(): String = if (s == null) "" else s

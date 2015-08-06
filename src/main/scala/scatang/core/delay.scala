@@ -9,7 +9,7 @@ trait IPending {
 }
 
 object Delay {
-  def apply[T](fn: () ⇒ T) = new Delay[T](fn)
+  def apply[T](fn: () ⇒ T): Delay[T] = new Delay[T](fn)
 }
 
 class Delay[T](var fn: () ⇒ T) extends Function0[T] with IDeref[T] with IPending {
